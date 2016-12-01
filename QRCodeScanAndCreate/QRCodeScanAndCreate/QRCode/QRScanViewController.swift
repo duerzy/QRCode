@@ -190,12 +190,12 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         }
     }
     
-    @objc private func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         if metadataObjects.count > 0{
             session.stopRunning()
             let metadataObject = metadataObjects[0]
             if let cb = self.completeCbClosure{
-                cb(metadataObject.stringValue)
+                cb((metadataObject as AnyObject).stringValue)
             }
             self.dismiss(animated: true, completion: nil)
         }
